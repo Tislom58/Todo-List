@@ -1,0 +1,51 @@
+.buttondone {
+    padding: 2px;
+    background: floralwhite;
+    border-radius: 5px;
+    cursor:pointer;
+    margin: 2px;
+}
+
+.taskline {
+    display: flex;
+    align-items: center;
+}
+
+.required {
+    color: red;
+    font-size: small;
+}
+
+.taskblock
+{
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background: khaki;
+    color: darkslategray;
+    margin: -15px;
+}
+
+.inputform {
+    margin: 20px 20px 20px 0;
+    width: 500px;
+}
+
+#tagsintasks {
+    display: flex;
+    overflow: auto;
+}
+
+#tagblock {
+    padding: 5px;
+}
+
+#struct {
+    display: flex;
+}
+
+body {
+    background: beige;
+    padding: 30px;
+}
