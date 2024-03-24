@@ -6,11 +6,7 @@ require 'server_requests.php';
 require 'functions.php';
 ?>
 
-<!-- TODO: Moznost pridat/odobrat tag pri editovani ulohy -->
-<!-- TODO: Moznost editovat deadline pri editovani ulohy -->
-<!-- TODO: Filter tagov -->
-
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,30 +24,16 @@ require 'functions.php';
 </header>
 <body>
 
-<h1 id="greet">Hi Daniel, what are your tasks today?</h1>
-
 <div id="struct">
-    <div>
-        <div id="inputform" class="inputform">
+    <div id="tags">
+        <div class="inputform">
             <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-                Add task: <label><input type="text" name="task"></label>
-                <label for="due_date">Due date:</label>
-                <input type="date" id="due_date" name="due_date">
+                Add tag: <label><input type="text" name="tag"></label>
+                Choose color: <label><input type="text" name="tagcolor"></label>
                 <input class="button" type="submit">
-                <br><br>
-                <div id="tagselect">
-                    <label for="tags">Choose a tag: </label>
-                    <select id="tags" name="tags[]">
-                        <?php require 'tags.php'; ?>
-                    </select>
-                </div>
             </form>
-            <button class="button" id="plusbutton" onclick="inputTag()"> + </button>
         </div>
-
-        <div id="tasks">
-            <?php require 'display_tasks.php'?>
-        </div>
+        <?php require 'display_tags.php'; ?>
     </div>
 </div>
 

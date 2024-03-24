@@ -8,16 +8,16 @@
             <form action='index.php' method='POST' id='completetask'>
                 <input type='hidden' name='id' value=<?php echo $id;?>>
                 <input type='hidden' name='action' value='complete'>
-                <input class='buttondone' type='submit' value='Done'>
+                <input class='button' type='submit' value='Done'>
             </form>
             <?php echo $description; ?>
-            <button class='buttondone' onclick="updateTask(this.parentNode, this.parentNode.id)">Edit</button>
+            <button class='button' onclick="updateTask(this.parentNode, this.parentNode.id)">Edit</button>
         </div>
 
         <form action='index.php' method='POST' id='removetag'>
             <input type='hidden' name='id' value=<?php echo $id;?>>
             <input type='hidden' name='action' value='delete'>
-            <input class='buttondone' type='submit' value='Delete'>
+            <input class='button' type='submit' value='Delete'>
         </form>
         <br>
     </div>

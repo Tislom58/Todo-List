@@ -1,9 +1,33 @@
-.buttondone {
-    padding: 2px;
-    background: floralwhite;
-    border-radius: 5px;
-    cursor:pointer;
+.button {
+    padding: 4px;
     margin: 2px;
+    background: white;
+    border-radius: 1px;
+    border: none;
+    cursor:pointer;
+}
+
+.button:hover {
+    background-color: sandybrown;
+}
+
+#headerbutton {
+    padding: 10px;
+    font-size: 24px;
+    background-color: khaki;
+}
+
+#headerbutton:hover {
+    background-color: sandybrown;
+}
+
+#plusbutton {
+    padding: 5px;
+    background-color: khaki;
+}
+
+#plusbutton:hover {
+    background-color: sandybrown;
 }
 
 .taskline {
@@ -20,8 +44,7 @@
 {
     width: 300px;
     padding: 10px;
-    border: 2px solid #000;
-    border-radius: 10px;
+    border-radius: 5px;
     background: khaki;
     color: darkslategray;
     margin: -15px;
@@ -48,4 +71,9 @@
 body {
     background: beige;
     padding: 30px;
+}
+
+a {
+    text-decoration: initial;
+    color: black;
 }

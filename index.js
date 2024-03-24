@@ -1,10 +1,39 @@
-function updateTask(element, id) {
+function updateTask(element, div, id) {
     element.innerHTML = '<form action=\'index.php\' method=\'POST\' id=\'edittask\'>' +
         '<input type=\'text\' name=\'desc\'>' +
         '<input type=\'hidden\' name=\'id\' value='+ id +'>' +
         '<input type=\'hidden\' name=\'action\' value=\'update\'>' +
-        '<input class=\'buttondone\' type=\'submit\' name=\'task_edit\' value=\'Save\'/>' +
+        '<input class=\'button\' type=\'submit\' name=\'task_edit\' value=\'Save\'/>' +
         '</form>';
+
+    /*const selectElement = document.createElement("form");
+    selectElement.action = "index.php";
+    selectElement.method = "POST";
+    selectElement.id = "edittask";
+
+    const idInput = document.createElement("input");
+    idInput.type = "hidden";
+    idInput.name = "id";
+    idInput.value = id;
+
+    selectElement.appendChild(idInput);
+
+    const actionInput = document.createElement("input");
+    actionInput.type = "hidden";
+    actionInput.name = "action";
+    actionInput.value = "update";
+
+    selectElement.appendChild(actionInput);
+
+    const buttonInput = document.createElement("input");
+    buttonInput.class = "button";
+    buttonInput.type = "submit";
+    buttonInput.name = "task_edit";
+    buttonInput.value = "save";
+
+    selectElement.appendChild(buttonInput);
+
+    div.appendChild(selectElement);*/
 }
 
 function updateTag(element, id) {
@@ -12,7 +41,7 @@ function updateTag(element, id) {
         '<input type=\'text\' name=\'desc\'>' +
         '<input type=\'hidden\' name=\'id\' value=' + id + '>' +
         '<input type=\'hidden\' name=\'action\' value=\'updatetag\'>' +
-        '<input class=\'buttondone\' type=\'submit\' name=\'task_edit\' value=\'Save\'/>' +
+        '<input class=\'button\' type=\'submit\' name=\'task_edit\' value=\'Save\'/>' +
         '</form>';
 }
 

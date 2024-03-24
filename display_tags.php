@@ -14,8 +14,9 @@ if (!empty($rows)) {
         $color = $rows[$i]['color'];
         $id = $rows[$i]['ID'];
 
-        echo "<script type=\"text/javascript\" src=\"./index.js\"> storeTags($description) </script>";
-
         require 'tags_structure.php';
     }
+        echo "<script type=\"text/javascript\" src=\"index.js\"></script>";
 }
+
+
