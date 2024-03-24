@@ -106,11 +106,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conn->query($sql);
 
         } elseif ($_POST['action'] === 'update') {
-            $stmt = $conn->prepare("UPDATE Tasks SET task_description = ? WHERE task_id = ?");
-            $stmt->bind_param("si", $description, $id);
+            $stmt = $conn->prepare("UPDATE Tasks SET task_description = ?, due_date = ? WHERE task_id = ?");
+            $stmt->bind_param("ssi", $description, $due_date, $id);
 
             $id = $_POST['id'];
-            $description = $_POST['desc'];
+            $sanitized_input = preg_replace('/[^a-zA-Z0-9_ %\[\].()&-]/', '', $_POST['desc']);
+            $description = $sanitized_input;
+
+            ($_POST['duedate'] !== "") ? $date = $_POST['duedate'] : $date = null;
+            $due_date = $date;
 
             $stmt->execute();
             $stmt->close();
@@ -127,7 +131,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bind_param("si", $description, $id);
 
             $id = $_POST['id'];
-            $description = $_POST['desc'];
+            $sanitized_input = preg_replace('/[^a-zA-Z0-9_ %\[\].()&-]/', '', $_POST['desc']);
+            $description = $sanitized_input;
 
             $stmt->execute();
             $stmt->close();

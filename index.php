@@ -7,7 +7,6 @@ require 'functions.php';
 ?>
 
 <!-- TODO: Moznost pridat/odobrat tag pri editovani ulohy -->
-<!-- TODO: Moznost editovat deadline pri editovani ulohy -->
 <!-- TODO: Filter tagov -->
 
 <!DOCTYPE html> 
