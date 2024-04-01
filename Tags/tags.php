@@ -1,22 +1,18 @@
 <?php
 global $conn;
 
+// SQL query for displaying dropdown options of selectible tags
+
 $sql = "SELECT * FROM Tags";
 $result = $conn->query($sql);
 
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
-echo "<h3>List of tags: </h3>";
+echo "<option>None</option>";
 
 if (!empty($rows)) {
     for ($i = 0; $i < count($rows); $i++) {
         $description = $rows[$i]['description'];
-        $color = $rows[$i]['color'];
-        $id = $rows[$i]['ID'];
-
-        require 'tags_structure.php';
+        echo "<option>$description</option>";
     }
-        echo "<script type=\"text/javascript\" src=\"index.js\"></script>";
 }
-
-

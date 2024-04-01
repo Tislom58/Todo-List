@@ -1,5 +1,7 @@
 <?php global $conn, $description, $color, $id; ?>
 
+<!-- HTML structure for displaying tags -->
+
 <br>
 <div id='tagblock' class="taskblock">
     <div class='taskline'>

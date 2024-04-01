@@ -1,6 +1,8 @@
 <?php
 global $conn;
 
+// SQL query for displaying archived tasks
+
 $sql = "SELECT * FROM ArchivedTasks";
 $result = $conn->query($sql);
 

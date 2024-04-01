@@ -1,4 +1,5 @@
 <?php global $conn, $description, $due_date, $id; ?>
+<!-- HTML structure for archived tasks -->
 
 <br>
 <div class="taskblock">

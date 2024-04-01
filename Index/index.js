@@ -1,29 +1,20 @@
-function updateTask(element, div, id) {
-    // Replace task description with user input
+function updateTask(element, div) {
+    // Edit task with user input
 
-    // Store last due date
     let parentDiv = div.parentNode.parentNode;
-    let dueEl = parentDiv.querySelector("div[id='duedate']");
-    let dueDate = dueEl.innerText;
+    let id = element.id;
 
-    // Clear due date
-    dueEl.innerHTML = "";
+    // Get current tags
+    let tagsDiv = parentDiv.querySelector("div[id='tagsintasks']");
+    let tagsText = tagsDiv.innerText;
+    const tags = tagsText.split('\n\n');
 
-    dueEl.innerText = "Due: ";
+    tagsDiv.innerHTML = "";
 
-    // Change date
-    const inputDate = document.createElement("input");
-    inputDate.type = "date";
-    inputDate.value = dueDate;
-
-    // Register changes
-    let newDate;
-    inputDate.addEventListener('change', function(event) {
-        newDate = this.value;
-        dateInput.setAttribute('value', newDate);
-    });
-
-    dueEl.appendChild(inputDate);
+    // Display options
+    for (let i=0;i<tags.length;i++) {
+        inputTag(tagsDiv, tags[i]);
+    }
 
     // Get last description
     const descriptionEl = document.querySelector("div[id='" + id + "'] p");
@@ -46,7 +37,7 @@ function updateTask(element, div, id) {
 
     formElement.appendChild(textInput);
 
-    // Parse task_id to server
+    // Pass task_id to server
     const idInput = document.createElement("input");
     idInput.type = "hidden";
     idInput.name = "id";
@@ -54,21 +45,62 @@ function updateTask(element, div, id) {
 
     formElement.appendChild(idInput);
 
-    // Parse dueDate to server
+    // Pass dueDate to server
     const dateInput = document.createElement("input");
     dateInput.type = "hidden";
     dateInput.name = "duedate";
-    dateInput.value = dueDate;
 
     formElement.appendChild(dateInput);
 
-    // Parse action to execute
+    // Pass action to execute
     const actionInput = document.createElement("input");
     actionInput.type = "hidden";
     actionInput.name = "action";
     actionInput.value = "update";
 
     formElement.appendChild(actionInput);
+
+    // Pass tags to be added/removed
+
+    // Set initial values to inputs
+    let selectElements = tagsDiv.querySelectorAll("select");
+    for (let i=0;i<selectElements.length;i++) {
+        let tagsInput = document.createElement("input");
+        tagsInput.type = "hidden";
+        tagsInput.name = "tags[]";
+        tagsInput.setAttribute("value", selectElements[i].options[selectElements[i].selectedIndex].value);
+        selectElements[i].addEventListener("change", () =>
+        {
+            tagsInput.setAttribute("value", selectElements[i].options[selectElements[i].selectedIndex].value);
+        });
+        formElement.appendChild(tagsInput);
+    }
+
+    // Set values to added inputs as well (allows to add more tags than initially)
+    tagsDiv.addEventListener("change", () => {
+        let selectElements = tagsDiv.querySelectorAll("select");
+        for (let i=0;i<selectElements.length;i++) {
+            let tagsInput = document.createElement("input");
+            tagsInput.type = "hidden";
+            tagsInput.name = "tags[]";
+            tagsInput.setAttribute("value", selectElements[i].options[selectElements[i].selectedIndex].value);
+            selectElements[i].addEventListener("change", () =>
+            {
+                tagsInput.setAttribute("value", selectElements[i].options[selectElements[i].selectedIndex].value);
+            });
+            formElement.appendChild(tagsInput);
+        }
+    });
+
+    // Plus button
+    const plusButton = document.createElement("button");
+    plusButton.innerText = "+";
+    plusButton.className = "button";
+    plusButton.addEventListener("click", () => {
+        inputTag(tagsDiv);
+    });
+
+    tagsDiv.parentNode.appendChild(plusButton);
 
     // Save button
     const buttonInput = document.createElement("input");
@@ -79,8 +111,34 @@ function updateTask(element, div, id) {
 
     formElement.appendChild(buttonInput);
 
+    // Close form
     div.appendChild(formElement);
 
+    // Store last due date
+    let dueDiv = parentDiv.querySelector("div[id='duedate']");
+    let dueDate = dueDiv.innerText;
+    dueDate = dueDate.replace("Due: ", "");
+
+    // Clear due date
+    dueDiv.innerHTML = "";
+
+    dueDiv.innerText = "Due: ";
+
+    // Change date
+    const inputDate = document.createElement("input");
+    inputDate.type = "date";
+    inputDate.setAttribute('value', dueDate);
+    dateInput.setAttribute('value', dueDate);
+
+    // Register changes
+    let newDate;
+    inputDate.addEventListener('change', function() {
+        newDate = this.value;
+        console.log(newDate);
+        dateInput.setAttribute('value', newDate);
+    });
+
+    dueDiv.appendChild(inputDate);
 }
 
 function updateTag(element, div, id) {
@@ -132,12 +190,13 @@ function updateTag(element, div, id) {
 
     formElement.appendChild(buttonInput);
 
+    // Close form
     div.appendChild(formElement);
 }
 
-function inputTag() {
+function inputTag(parentDiv=document.getElementById("tagselect"), defaultOption="None") {
     let element = document.getElementById("tags");
-    let div = document.getElementById("tagselect");
+    let div = parentDiv;
 
     // Create the <select> element
     const selectElement = document.createElement("select");
@@ -147,6 +206,9 @@ function inputTag() {
     for (let i = 0; i < element.length; i++) {
         const option = document.createElement("option");
         option.text = element.options[i].value;
+        if (defaultOption === option.text) {
+            option.selected = true;
+        }
         selectElement.appendChild(option);
 
     // Append the <select> element to the div

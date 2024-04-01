@@ -1,4 +1,5 @@
 <?php
+// General PHP functions
 
 function get_done_tasks($conn): int {
     $sql = "SELECT COUNT(*) AS total_rows FROM ArchivedTasks";
