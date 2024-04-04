@@ -31,6 +31,7 @@ require 'functions.php';
 <h1 id="greet">Hi Daniel, what are your tasks today?</h1>
 
 <div id="struct">
+    <div>
         <!-- Block for adding tasks -->
         <div id="inputform" class="inputform">
             <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
@@ -60,6 +61,7 @@ require 'functions.php';
                 <input class="button" type="submit" value="Filter">
             </form>
             <?php require '../Tasks/display_tasks.php' ?>
+        </div>
     </div>
 </div>
 

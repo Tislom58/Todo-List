@@ -1,7 +1,7 @@
 function updateTask(element, div) {
     // Edit task with user input
 
-    let parentDiv = div.parentNode.parentNode;
+    let parentDiv = div.parentNode;
     let id = element.id;
 
     // Get current tags
